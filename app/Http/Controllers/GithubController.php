@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
-class GoogleController extends Controller
+class GithubController extends Controller
 {
     // Redirect the user to the Google authentication page.
     public function redirect()
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('github')->redirect();
     }
 
     // Handle callback from Google after authentication.
@@ -20,24 +20,23 @@ class GoogleController extends Controller
     {
         try {
             // Retrieve the user from Google.
-            $googleUser = Socialite::driver('google')->user();
-            
+            $githubUser = Socialite::driver('github')->user();
+
             // Check if the user already exists in the database.
-            $user = User::where('email', $googleUser->getEmail())->first();
+            $user = User::where('email', $githubUser->getEmail())->first();
             if ($user) {
-                // Update the user with Google ID if it doesn't exist.
+                // Update the user with Github ID if it doesn't exist.
                 if (!$user->google_id) {
-                    $user->update(['Google_id' => $googleUser->getId()]);
+                    $user->update(['Github_id' => $githubUser->getId()]);
                 }
             }
 
-            // Authenticate the user.
             if (!$user) {
                 // Create a new user if not found.
                 $newUser = User::create([
-                    'name' => $googleUser->getName(),
-                    'email' => $googleUser->getEmail(),
-                    'Google_id' => $googleUser->getId(),
+                    'name' => $githubUser->getName(),
+                    'email' => $githubUser->getEmail(),
+                    'Github_id' => $githubUser->getId(),
                     'password' => bcrypt('secret'),
                 ]);
 
@@ -55,7 +54,7 @@ class GoogleController extends Controller
             }
         } catch (\Throwable $th) {
             // Redirect to the login page with an error message in case of any exception.
-            return redirect()->route('login')->with('error', 'An error occurred while trying to login with Google.');
+            return redirect()->route('login')->with('error', 'An error occurred while trying to login with Github.');
         }
     }
 }

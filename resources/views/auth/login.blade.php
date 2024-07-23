@@ -60,6 +60,17 @@
                 <span class="text-sm text-left ml-4">Continue with Google</span>
             </a>
         </div>
+        <div class="w-3/5 mx-auto mt-4">
+            <a href="{{ route('auth.Github') }}"
+                class="focus:ring-2 focus:ring-indigo-800 focus:ring-offset-4 bg-gray-100 hover:bg-gray-200 rounded flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                    class="bi bi-github ml-2" viewBox="0 0 16 16">
+                    <path
+                        d="M8 0a8 8 0 0 0-2.548 15.59c.404.074.553-.175.553-.39v-1.417c-2.059.447-2.494-.969-2.494-.969-.336-.85-.82-1.077-.82-1.077-.671-.459.051-.45.051-.45.743.052 1.135.764 1.135.764.658 1.127 1.726.801 2.146.613.067-.477.258-.801.47-.985-1.668-.19-3.418-.834-3.418-3.717 0-.822.293-1.494.775-2.021-.078-.19-.335-1.015.073-2.113 0 0 .633-.203 2.08.775.604-.168 1.24-.25 1.882-.252.642.002 1.278.084 1.882.252 1.447-.978 2.08-.775 2.08-.775.408 1.098.151 1.923.073 2.113.482.527.775 1.199.775 2.021 0 2.891-1.755 3.526-3.426 3.711.265.229.5.676.5 1.362v2.018c0 .218.15.466.556.39A8 8 0 0 0 8 0z" />
+                </svg>
+                <span class="text-sm text-left ml-4">Continue with GitHub</span>
+            </a>
+        </div>
     </div>
 
 </x-guest-layout>
